@@ -8,9 +8,6 @@
 [![Status](https://img.shields.io/badge/Status-Complete-brightgreen)](https://github.com/Asiyaarab/SentiSense/blob/main)
 
 > Classifies **50,000+ IMDb movie reviews** as positive or negative using a TF-IDF + Logistic Regression NLP pipeline, deployed as a real-time Streamlit web app.
-
-[![SentiSense Demo](https://github.com/Asiyaarab/SentiSense/raw/main/assets/demo_preview.png)](assets/demo_preview.png)
-
 ---
 
 ## What it does
