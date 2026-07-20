@@ -113,7 +113,6 @@ SentiSense/
 |-- .gitignore
 |-- LICENSE
 |-- README.md
-|-- WHATS_NEW.md            # Notes on the train.py / app.py update (safe to delete)
 ```
 
 ---
