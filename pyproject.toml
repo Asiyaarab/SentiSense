@@ -1,0 +1,98 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sentisense"
+version = "2.0.0"
+description = "Real-time movie review sentiment classifier (TF-IDF + linear model)."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Asiya Arab", email = "aashiyaarab39@gmail.com" }]
+requires-python = ">=3.10"
+keywords = ["nlp", "sentiment-analysis", "imdb", "tfidf", "scikit-learn", "streamlit"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: Linguistic",
+]
+dependencies = [
+    "streamlit>=1.30",
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "scikit-learn>=1.3",
+    "nltk>=3.8",
+    "joblib>=1.3",
+]
+
+[project.optional-dependencies]
+api = ["fastapi>=0.110", "uvicorn[standard]>=0.27", "pydantic>=2.5"]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.3",
+    "black>=24.0",
+    "mypy>=1.8",
+    "pre-commit>=3.6",
+]
+notebook = ["jupyter>=1.0", "ipykernel>=6.25", "matplotlib>=3.8", "seaborn>=0.13"]
+
+[project.urls]
+Homepage = "https://github.com/Asiyaarab/SentiSense"
+Issues = "https://github.com/Asiyaarab/SentiSense/issues"
+Source = "https://github.com/Asiyaarab/SentiSense"
+
+[project.scripts]
+sentisense-train = "scripts.cli:main"
+
+# ---------------------------------------------------------------------------
+# Setuptools: install as a package so `import sentisense` works after `pip install -e .`
+# ---------------------------------------------------------------------------
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# ---------------------------------------------------------------------------
+# Tooling
+# ---------------------------------------------------------------------------
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = ["data/raw", "models", "notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "N", "C4", "SIM", "RUF"]
+ignore = [
+    "E501",  # line length (handled by formatter)
+    "B008",  # fastapi.Function() pattern is fine
+    "N806",  # uppercase X for feature matrices is standard ML convention
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.mypy]
+python_version = "3.10"
+strict_optional = true
+warn_unused_ignores = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+addopts = "-ra -q --strict-markers"
+markers = [
+    "slow: marks tests as slow (deselect with -m 'not slow')",
+    "integration: marks tests that need the trained model artifact",
+]
