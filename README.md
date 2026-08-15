@@ -12,6 +12,8 @@
 
 > Production-grade NLP pipeline that classifies movie reviews as **positive** or **negative** with a confidence score, packaged as a Streamlit app, FastAPI endpoint, and a clean importable Python package.
 
+![Dashboard screenshot](docs/dashboard-screenshot.png)
+
 ---
 
 ## ✨ What it does
